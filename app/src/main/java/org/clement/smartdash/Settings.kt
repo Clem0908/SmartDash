@@ -19,13 +19,24 @@ class Settings : ComponentActivity() {
         val saveButton = findViewById<Button>(R.id.savebutton)
         saveButton.setOnClickListener {
             val IP = findViewById<EditText>(R.id.Settings_IP_IP)
-            val userText = IP.text.toString()
-            val sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString("IP", userText)
-            editor.apply()
-            val savedString = getString(R.string.saved)
-            Toast.makeText(this, savedString, Toast.LENGTH_SHORT).show()
+            val userIP = IP.text.toString()
+            val port = findViewById<EditText>(R.id.Settings_port_port)
+            val userPort = port.text.toString()
+
+            try {
+
+                val userPortInt: Int = userPort.toInt()
+                val sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("userIP", userIP)
+                editor.putInt("userPort", userPortInt)
+                editor.apply()
+                val savedString = getString(R.string.saved)
+                Toast.makeText(this, savedString, Toast.LENGTH_SHORT).show()
+
+            } catch (e: NumberFormatException) {
+                Toast.makeText(this, "Invalid input. Please enter a valid integer.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

@@ -3,4 +3,7 @@
     <string name="settings">Settings</string>
     <string name="save">Save</string>
     <string name="saved">Saved</string>
+    <string name="ipaddr">IP address of the PC running Live for Speed : </string>
+    <string name="port">Port used for connection with OutGauge :</string>
+    <string name="err_port">Invalid input. Please enter a valid integer.</string>
 </resources>
