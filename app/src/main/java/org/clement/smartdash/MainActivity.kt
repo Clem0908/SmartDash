@@ -1,24 +1,40 @@
 package org.clement.smartdash
 
 import android.content.Context
+import kotlinx.coroutines.Dispatchers
+import android.Manifest
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import java.io.IOException
+import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
 import java.net.DatagramPacket
 import java.net.DatagramSocket
-import java.net.Inet4Address
 import java.net.InetAddress
+import java.util.InvalidPropertiesFormatException
 
 
 class MainActivity : ComponentActivity() {
 
+    companion object {
+        private const val INTERNET_PERMISSION_REQUEST_CODE = 123
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.INTERNET), INTERNET_PERMISSION_REQUEST_CODE)
+        }
+
+        //Settings button
         setContentView(R.layout.activity_main)
         findViewById<Button>(R.id.settings)
             .setOnClickListener {
@@ -26,49 +42,56 @@ class MainActivity : ComponentActivity() {
                     startActivity(intent)
             }
 
-        val sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val addrStr = sharedPreferences.getString("userIP", "127.0.0.1")
-        val addr: InetAddress = InetAddress.getByName(addrStr) as InetAddress
-        if(addr.isAnyLocalAddress()) {
-            val port: Int = sharedPreferences.getInt("userPort", 49999)
-            val s = DatagramSocket(port, addr)
-            val buffer = ByteArray(128)
-            val p = DatagramPacket(buffer, buffer.size)
-            var data = ByteArray(128)
+        //Connection button
+        findViewById<Button>(R.id.connection)
+            .setOnClickListener {
 
-                val connexion = findViewById<TextView>(R.id.connexion)
-                connexion.text = "$addrStr:$port"
-                s.receive(p)
+                //Connection... Toast
+                val connectionRunStr = getString(R.string.connection_running)
+                showToast(connectionRunStr)
+                //Default settings
+                val sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+                val upAddrStr = sharedPreferences.getString("userIP", "127.0.0.1")
+                val port: Int = sharedPreferences.getInt("userPort", 60008)
+                showToast(upAddrStr.toString()+":"+port)
 
-                Toast.makeText(this, "Connecté", Toast.LENGTH_SHORT).show()
+                val addr: InetAddress = InetAddress.getByName(upAddrStr) as InetAddress
 
+                showToast("Création du socket...")
+                try {
+                    val s = DatagramSocket(port,addr)
+                    var data = ByteArray(1024)
 
-                val taille = p.length
-                data = p.data
-                var car = String()
-                /* for (i in 4..7) {
-                car += Char(data[i].toUShort())
+                    val buffer = ByteArray(1024)
+                    val p = DatagramPacket(buffer, buffer.size)
+
+                        while (true) {
+                            s.receive(p)
+
+                            val sourceAddr = p.address.hostAddress
+                            val sourcePort = p.port
+
+                            showToast(sourceAddr)
+                            if (upAddrStr == sourceAddr && port == sourcePort) {
+
+                                val connectedStr = getString(R.string.connected)
+                                showToast(connectedStr)
+
+                                val data = p.data
+                                val dataSize = p.length
+                            } else {
+                                val notConnectedStr = getString(R.string.not_connected)
+                                showToast(notConnectedStr)
+                            }
+                    }
+                } catch (t: Throwable) {
+                    val errSoc = getString(R.string.socket_error)
+                    showToast(errSoc)
+                    t.printStackTrace()
+                }
             }
-            println("Voiture : $car")
-            println("Drapaux : " + data[8] + data[9])
-            println("Rapport : " + data[10])*/
-                val vueRapport = findViewById<TextView>(R.id.vueRapport)
-                vueRapport.text = data[10].toString()
-                /*
-            println("PLID : " + data[11])
-            var asInt = (data[12].toInt() and 0xFF
-                    or (data[13].toInt() and 0xFF shl 8)
-                    or (data[14].toInt() and 0xFF shl 16)
-                    or (data[15].toInt() and 0xFF shl 24))
-            var asFloat = java.lang.Float.intBitsToFloat(asInt)
-            println("Vitesse : " + asFloat * 3.6)
-            asInt = (data[16].toInt() and 0xFF
-                    or (data[17].toInt() and 0xFF shl 8)
-                    or (data[18].toInt() and 0xFF shl 16)
-                    or (data[19].toInt() and 0xFF shl 24))
-            asFloat = java.lang.Float.intBitsToFloat(asInt)
-            println("RPMs : $asFloat")
-*/
-        }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
     }
 }

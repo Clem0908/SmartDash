@@ -35,7 +35,8 @@ class Settings : ComponentActivity() {
                 Toast.makeText(this, savedString, Toast.LENGTH_SHORT).show()
 
             } catch (e: NumberFormatException) {
-                Toast.makeText(this, "Invalid input. Please enter a valid integer.", Toast.LENGTH_SHORT).show()
+                val invalidStr = getString(R.string.invalid_input)
+                Toast.makeText(this, invalidStr, Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -4,6 +4,10 @@ plugins {
 }
 
 android {
+
+    /*lint {
+        baseline = file(lint-baseline.xml)
+    }*/
     namespace = "org.clement.smartdash"
     compileSdk = 33
 
@@ -27,6 +31,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -51,6 +56,7 @@ android {
 
 dependencies {
 
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.2")

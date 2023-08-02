@@ -5,5 +5,10 @@
     <string name="saved">Saved</string>
     <string name="ipaddr">IP address of the PC running Live for Speed : </string>
     <string name="port">Port used for connection with OutGauge :</string>
-    <string name="err_port">Invalid input. Please enter a valid integer.</string>
+    <string name="connection">Connect</string>
+    <string name="connection_running">Connection to…</string>
+    <string name="connected">Connected</string>
+    <string name="not_connected">Not connected</string>
+    <string name="invalid_input">Invalid input</string>
+    <string name="socket_error">Unable to create the socket</string>
 </resources>
