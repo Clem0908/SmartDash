@@ -1,2 +1,4 @@
 Server.class
-Server$MyHandler.class
+key.jks
+.gradle/
+.idea/

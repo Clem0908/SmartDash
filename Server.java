@@ -12,11 +12,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.net.Inet4Address;
 
-//Web server
-import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -31,40 +26,56 @@ public class Server
 	{
 
 		int lfs_port = 60008;
-		int server_port = 60009;
 
-			DatagramSocket lfs_ds = new DatagramSocket(lfs_port);
-			byte data[] = new byte[96];
-			DatagramPacket lfs_dp = new DatagramPacket(data,data.length);
-			byte lfs_data[] = new byte[96];
+		DatagramSocket lfs_ds = new DatagramSocket(lfs_port);
+		byte data[] = new byte[96];
+		DatagramPacket lfs_dp = new DatagramPacket(data,data.length);
+		byte lfs_data[] = new byte[96];
 
+		lfs_ds.receive(lfs_dp);
+		lfs_ds.close();
+		lfs_data = lfs_dp.getData();
+
+		int asInt = (lfs_data[12] & 0xFF)
+		    | ((lfs_data[13] & 0xFF) << 8)
+		    | ((lfs_data[14] & 0xFF) << 16)
+		    | ((lfs_data[15] & 0xFF) << 24);
+		float asFloat = (int) Float.intBitsToFloat(asInt);
+		double conv = asFloat * 3.6;
+		int speed = (int) conv;
+
+		String fileSpeedPath = "./lfs/speed.txt";
+		BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileSpeedPath), StandardCharsets.UTF_8);
+		writer.write("");
+		writer.write(String.valueOf(speed));
+		writer.close();
+
+		DatagramSocket server_ds = new DatagramSocket(60009);
+		server_ds.setBroadcast(true);
+		byte data1[] = new byte[96];
+		for(int i = 0; i < 96; i++) {
+			data1[i] = data[i];
+		}
+		DatagramPacket server_dp = new DatagramPacket(data1,data1.length,Inet4Address.getByName("192.168.0.15"),60009);
+		server_ds.send(server_dp);
+		server_ds.close();
+
+		while(true)
+		{
+			lfs_ds = new DatagramSocket(lfs_port);
+			lfs_dp = new DatagramPacket(data,data.length);
+			 
 			lfs_ds.receive(lfs_dp);
 			lfs_ds.close();
-			lfs_data = lfs_dp.getData();
-
-			int asInt = (lfs_data[12] & 0xFF)
-			    | ((lfs_data[13] & 0xFF) << 8)
-			    | ((lfs_data[14] & 0xFF) << 16)
-			    | ((lfs_data[15] & 0xFF) << 24);
-			float asFloat = (int) Float.intBitsToFloat(asInt);
-			double conv = asFloat * 3.6;
-			int speed = (int) conv;
-
-			String fileSpeedPath = "./lfs/speed.txt";
-			BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileSpeedPath), StandardCharsets.UTF_8);
-			writer.write("");
-			writer.write(String.valueOf(speed));
-			writer.close();
-			HttpServer server = HttpServer.create(new InetSocketAddress(server_port), 0);
-	        	server.createContext("/", new MyHandler());
-        		server.start();
-
-			while(true) {
-				lfs_ds = new DatagramSocket(lfs_port);
-				lfs_dp = new DatagramPacket(data,data.length);
-
-			lfs_ds.receive(lfs_dp);
-			lfs_ds.close();
+			
+			server_ds = new DatagramSocket(60009);
+			server_ds.setBroadcast(true);
+			for(int i = 0; i < 96; i++) {
+				data1[i] = data[i];
+			}
+			server_dp = new DatagramPacket(data1,data1.length,Inet4Address.getByName("192.168.0.15"),60009);
+			server_ds.send(server_dp);
+			server_ds.close();
 			lfs_data = lfs_dp.getData();
 
 			asInt = (lfs_data[12] & 0xFF)
@@ -79,26 +90,9 @@ public class Server
 			writer.write("");
 			writer.write(String.valueOf(speed));
 			writer.close();
-			}	
-	}
+			System.out.println(speed+" km/h");
 
-	static class MyHandler implements HttpHandler
-	{
-
-		@Override
-		public void handle(HttpExchange exchange) throws IOException
-		{
-			String filePath = "./html/main.html";
-			byte[] data = Files.readAllBytes(Paths.get(filePath));
-
-		    exchange.getResponseHeaders().set("Content-Type", "text/html");
-		    exchange.sendResponseHeaders(200,data.length);
-
-		    try (OutputStream outputStream = exchange.getResponseBody())
-		    {
-			outputStream.write(data);
-		    }
 		}
-    	}
-
+	}	
+	
 }
