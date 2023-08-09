@@ -5,5 +5,4 @@
     <string name="save">Save</string>
     <string name="useriptext">IP address of the computer running Live for Speed :</string>
     <string name="userporttext">Port where the Server is sending packets :</string>
-    <string name="speed">Speed :</string>
 </resources>

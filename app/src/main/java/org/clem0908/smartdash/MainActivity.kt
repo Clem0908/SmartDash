@@ -60,9 +60,26 @@ class MainActivity : Activity() {
                             userPort
                         )
                         ds.receive(dp)
+                        val currentCar = byteArrayOf(data[4], data[5], data[6], data[7])
+                        val currentCarText = findViewById<TextView>(R.id.currentCar)
+                        currentCarText.text = String(currentCar, Charsets.UTF_8)
+                        val currentGear = data[10]
+                        val currentGearText = findViewById<TextView>(R.id.currentGear)
+                        if(currentGear.toInt() == 0){
+                            currentGearText.text = "R"
+                        } else {
+                            if (currentGear.toInt() == 1) {
+                                currentGearText.text = "N"
+                            } else {
+                                currentGearText.text = (currentGear.toInt()-1).toString()
+                            }
+                        }
                         val speed = fromFloatBytesToInt(data[12], data[13], data[14], data[15])
                         val speedValueText = findViewById<TextView>(R.id.speedValue)
-                        speedValueText.setText(speed.toString()+" km/h")
+                        speedValueText.text = speed.toString()+" km/h"
+                        val rpm = fromFloatBytesToInt(data[16], data[17], data[18], data[19])
+                        val rpmText = findViewById<TextView>(R.id.rpmValue)
+                        rpmText.text = rpm.toString()
                         ds.close()
                     } catch (e: Exception) {
                         e.printStackTrace()

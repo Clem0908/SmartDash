@@ -6,5 +6,4 @@
     <string name="save">Sauvegarder</string>
     <string name="useriptext">Adresse IP de l\'ordinateur où Live for Speed est lancé :</string>
     <string name="userporttext">Port où le Server envoie les paquets :</string>
-    <string name="speed">Vitesse :</string>
 </resources>
