@@ -120,6 +120,24 @@ class MainActivity : Activity() {
                         val fuelText = findViewById<TextView>(R.id.fuelValue)
                         fuelText.text = fuel.toString()+" %"
 
+                        //Shift light
+                        val shiftLight = getBit(data[44].toInt(),0)
+                        val shiftLightImage = findViewById<ImageView>(R.id.currentShift)
+                        if(shiftLight == 1) {
+                            shiftLightImage.setImageResource(R.drawable.shift)
+                        } else {
+                            shiftLightImage.setImageResource(R.drawable.transparent)
+                        }
+
+                        //Beam light
+                        val beamLight = getBit(data[44].toInt(),1)
+                        val beamLightImage = findViewById<ImageView>(R.id.beam)
+                        if(beamLight == 1) {
+                            beamLightImage.setImageResource(R.drawable.beam)
+                        } else {
+                            beamLightImage.setImageResource(R.drawable.transparent)
+                        }
+
                         //Handbrake light
                         val handbrakeLight = getBit(data[44].toInt(),2)
                         val handbrakeLightImage = findViewById<ImageView>(R.id.currentHandbrake)
@@ -129,6 +147,78 @@ class MainActivity : Activity() {
                             handbrakeLightImage.setImageResource(R.drawable.transparent)
                         }
 
+                        //Limiter light
+                        val limiterLight = getBit(data[44].toInt(),3)
+                        val limiterLightImage = findViewById<ImageView>(R.id.currentLimiter)
+                        if(limiterLight == 1) {
+                            limiterLightImage.setImageResource(R.drawable.limiter)
+                        } else {
+                            limiterLightImage.setImageResource(R.drawable.transparent)
+                        }
+
+                        //ESP light
+                        val ESPLight = getBit(data[44].toInt(),4)
+                        val ESPLightImage = findViewById<ImageView>(R.id.currentESP)
+                        if(ESPLight == 1) {
+                            ESPLightImage.setImageResource(R.drawable.esp)
+                        } else {
+                            ESPLightImage.setImageResource(R.drawable.transparent)
+                        }
+
+                        //Indicators
+                        val rightLight = getBit(data[44].toInt(),6)
+                        val leftLight = getBit(data[44].toInt(),5)
+                        val rightLightImage = findViewById<ImageView>(R.id.currentRight)
+                        val leftLightImage = findViewById<ImageView>(R.id.currentLeft)
+                        val warningLigthImage = findViewById<ImageView>(R.id.warning)
+
+                        if(rightLight == 1) {
+                            rightLightImage.setImageResource(R.drawable.right)
+                        } else {
+                            rightLightImage.setImageResource(R.drawable.transparent)
+                        }
+                        if(leftLight == 1) {
+                            leftLightImage.setImageResource(R.drawable.left)
+                        } else {
+                            leftLightImage.setImageResource(R.drawable.transparent)
+                        }
+                        if(rightLight == 1 && leftLight == 1) {
+                            rightLightImage.setImageResource(R.drawable.right)
+                            leftLightImage.setImageResource(R.drawable.left)
+                            warningLigthImage.setImageResource(R.drawable.warning)
+                        }
+                        if(rightLight == 0 && leftLight == 0) {
+                            rightLightImage.setImageResource(R.drawable.transparent)
+                            leftLightImage.setImageResource(R.drawable.transparent)
+                            warningLigthImage.setImageResource(R.drawable.transparent)
+                        }
+
+                        //Oil light
+                        val oilLight = getBit(data[45].toInt(),0)
+                        val oilLightImage = findViewById<ImageView>(R.id.oil)
+                        if(oilLight == 1) {
+                            oilLightImage.setImageResource(R.drawable.oil)
+                        } else {
+                            oilLightImage.setImageResource(R.drawable.transparent)
+                        }
+
+                        //Battery light
+                        val batteryLight = getBit(data[45].toInt(),1)
+                        val batteryLightImage = findViewById<ImageView>(R.id.battery)
+                        if(batteryLight == 1) {
+                            batteryLightImage.setImageResource(R.drawable.battery)
+                        } else {
+                            batteryLightImage.setImageResource(R.drawable.transparent)
+                        }
+
+                        //ABS light
+                        val absLight = getBit(data[45].toInt(),2)
+                        val absLightImage = findViewById<ImageView>(R.id.abs)
+                        if(absLight == 1) {
+                            absLightImage.setImageResource(R.drawable.abs)
+                        } else {
+                            absLightImage.setImageResource(R.drawable.transparent)
+                        }
 
                         ds.close()
                         TimeUnit.MILLISECONDS.sleep(100L)
