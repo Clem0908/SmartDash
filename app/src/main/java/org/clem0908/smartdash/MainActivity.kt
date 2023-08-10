@@ -17,6 +17,7 @@ import java.net.Inet4Address
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.concurrent.TimeUnit
+import kotlin.math.roundToInt
 
 class MainActivity : Activity() {
 
@@ -38,15 +39,15 @@ class MainActivity : Activity() {
         return speed.toInt()
     }
 
-    private fun fromFloatBytesToFuel(b0: Byte, b1: Byte, b2: Byte, b3: Byte): Float {
+    private fun fromFloatBytesToFuel(b0: Byte, b1: Byte, b2: Byte, b3: Byte): Int {
 
         val speedBytes = byteArrayOf(b0, b1, b2, b3)
         val speedBytesBuffer =
             ByteBuffer.wrap(speedBytes).order(ByteOrder.LITTLE_ENDIAN)
-        return speedBytesBuffer.float * 100
+        return (speedBytesBuffer.float * 100).roundToInt()
     }
 
-    fun getBit(value: Int, position: Int): Int {
+    private fun getBit(value: Int, position: Int): Int {
         return (value shr position) and 1;
     }
 
@@ -121,11 +122,11 @@ class MainActivity : Activity() {
 
                         //Handbrake light
                         val handbrakeLight = getBit(data[44].toInt(),2)
-                        val handbrakeLightImage: ImageView = findViewById(R.id.currentHandbrake)
+                        val handbrakeLightImage = findViewById<ImageView>(R.id.currentHandbrake)
                         if(handbrakeLight == 1) {
-                            handbrakeLightImage.visibility = View.VISIBLE
+                            handbrakeLightImage.setImageResource(R.drawable.handbrake)
                         } else {
-                            handbrakeLightImage.visibility = View.GONE
+                            handbrakeLightImage.setImageResource(R.drawable.transparent)
                         }
 
 
