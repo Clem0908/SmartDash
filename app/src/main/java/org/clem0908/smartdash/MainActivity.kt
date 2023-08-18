@@ -6,9 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.net.DatagramPacket
@@ -17,6 +20,7 @@ import java.net.Inet4Address
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
 class MainActivity : Activity() {
@@ -51,9 +55,16 @@ class MainActivity : Activity() {
         return (value shr position) and 1;
     }
 
+    private fun displayToast(param: String) {
+        Toast.makeText(this, param, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        //window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        window.requestFeature(Window.FEATURE_ACTION_BAR)
+        actionBar?.hide();
         setContentView(R.layout.mainactivityview)
         super.onStart()
         super.onResume()
@@ -64,16 +75,16 @@ class MainActivity : Activity() {
             startActivity(intent)
         }
 
-        findViewById<Button>(R.id.connection).setOnClickListener {
-            Log.d("SmartDash", "User clicked connection")
-
             val sharedPref = getSharedPreferences("userSettings", Context.MODE_PRIVATE)
             val userIP = sharedPref.getString("userIP", "127.0.0.1")
             val userPort = sharedPref.getInt("userPort", 60009)
 
-            GlobalScope.launch {
+           thread(start = true, name = "UDPListener", priority = -20) {
+
                 while(true) {
+
                     try {
+
                         val ds = DatagramSocket(userPort)
                         ds.broadcast = true
                         val data = ByteArray(96)
@@ -86,11 +97,6 @@ class MainActivity : Activity() {
 
                         //LFS packet receiving
                         ds.receive(dp)
-
-                        //Car name display
-                        val currentCar = byteArrayOf(data[4], data[5], data[6], data[7])
-                        val currentCarText = findViewById<TextView>(R.id.currentCar)
-                        currentCarText.text = String(currentCar)
 
                         //Current gear display
                         val currentGear = data[10]
@@ -222,11 +228,11 @@ class MainActivity : Activity() {
 
                         ds.close()
                         TimeUnit.MILLISECONDS.sleep(100L)
+
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
-            }
         }
 
     }
