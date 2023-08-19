@@ -12,16 +12,32 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:background="@color/white"
-        android:backgroundTint="#FFFFFF"
+        android:background="@color/black"
+        android:backgroundTint="@color/black"
         android:text="@string/settings"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.973"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.955" />
+
+    <Button
+        android:id="@+id/immersiveMode"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:background="@color/black"
+        android:backgroundTint="@color/black"
+        android:text="@string/immersive"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
     <TextView
         android:id="@+id/currentGear"

@@ -12,6 +12,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.net.DatagramPacket
@@ -62,12 +64,18 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        //window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         actionBar?.hide();
         setContentView(R.layout.mainactivityview)
         super.onStart()
         super.onResume()
+
+        findViewById<Button>(R.id.immersiveMode).setOnClickListener {
+            val windowInsetsController =
+                WindowCompat.getInsetsController(window, window.decorView)
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+            windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        }
 
         findViewById<Button>(R.id.settings).setOnClickListener {
 
@@ -119,7 +127,7 @@ class MainActivity : Activity() {
                         //Current RPMs display
                         val rpm = fromFloatBytesToIntRpm(data[16], data[17], data[18], data[19])
                         val rpmText = findViewById<TextView>(R.id.rpmValue)
-                        rpmText.text = rpm.toString()
+                        rpmText.text = rpm.toString()+" /min"
 
                         //Current fuel percentage
                         val fuel = fromFloatBytesToFuel(data[28], data[29], data[30], data[31])

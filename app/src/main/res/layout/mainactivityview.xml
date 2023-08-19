@@ -11,220 +11,234 @@
         android:id="@+id/settings"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:background="@color/white"
-        android:backgroundTint="#FFFFFF"
+        android:background="@color/black"
+        android:backgroundTint="@color/black"
         android:text="@string/settings"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.943"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline" />
+
+    <Button
+        android:id="@+id/immersiveMode"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:backgroundTint="@color/black"
+        android:text="@string/immersive"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline" />
 
     <TextView
         android:id="@+id/currentGear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A"
+        android:text="N"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="35sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.34"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369" />
+        app:layout_constraintBottom_toTopOf="@+id/halfMiddleTopHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/middleVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline" />
 
     <TextView
         android:id="@+id/speedValue"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="324dp"
+        android:layout_height="65dp"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A"
+        android:text="0 km/h"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/halfMiddleTopHorizontalGuideline" />
 
     <TextView
         android:id="@+id/rpmValue"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="404dp"
+        android:layout_height="55dp"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A"
+        android:text="0 /min"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/speedValue" />
+
 
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="476dp"
         android:src="@drawable/fuel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/middleHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/middleVerticalGuideline" />
 
     <TextView
         android:id="@+id/fuelValue"
         android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="516dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A %"
+        android:text="0 %"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/middleHorizontalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/middleVerticalGuideline" />
 
     <ImageView
         android:id="@+id/currentShift"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/shift"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.648"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
+        app:layout_constraintBottom_toTopOf="@+id/halfMiddleTopHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/middleVerticalGuideline" />
 
     <ImageView
         android:id="@+id/beam"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/beam"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintBottom_toTopOf="@+id/halfMiddleDownHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/oil"
+        app:layout_constraintStart_toStartOf="@+id/battery" />
 
     <ImageView
         android:id="@+id/currentHandbrake"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/handbrake"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713" />
+        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentLimiter"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginTop="64dp"
         android:src="@drawable/limiter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/currentHandbrake" />
 
     <ImageView
         android:id="@+id/currentESP"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/esp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706" />
+        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentRight"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/topHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentLeft"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.158"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/topHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/warning"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginTop="0dp"
         android:src="@drawable/warning"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/topHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/oil"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/oil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.665"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintBottom_toTopOf="@+id/halfMiddleDownHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline" />
 
     <ImageView
         android:id="@+id/battery"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/battery"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintBottom_toTopOf="@+id/halfMiddleDownHorizontalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline" />
 
     <ImageView
         android:id="@+id/abs"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginTop="64dp"
         android:src="@drawable/abs"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.803" />
+        app:layout_constraintEnd_toEndOf="@+id/currentESP"
+        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.025" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/halfMiddleTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="223dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middleHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/halfMiddleDownHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/downHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.975" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/leftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middleVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
