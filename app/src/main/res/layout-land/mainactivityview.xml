@@ -11,235 +11,249 @@
         android:id="@+id/settings"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:background="@color/black"
         android:backgroundTint="@color/black"
         android:text="@string/settings"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.973"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.955" />
+        app:layout_constraintBottom_toTopOf="@+id/landBottomHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/landRightVerticalGuideline" />
 
     <Button
         android:id="@+id/immersiveMode"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:background="@color/black"
         android:backgroundTint="@color/black"
         android:text="@string/immersive"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintBottom_toTopOf="@+id/landBottomHorizontalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landLeftVerticalGuideline" />
 
     <TextView
         android:id="@+id/currentGear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A"
+        android:text="N"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="35sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.321"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintEnd_toStartOf="@+id/landMiddleVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landTopHorizontalGuideline" />
 
     <TextView
         android:id="@+id/speedValue"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A"
+        android:text="0 km/h"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/landLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landHalfMiddleHorizontalGuideline" />
 
     <TextView
         android:id="@+id/rpmValue"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A"
+        android:text="0 /min"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/landRightVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landHalfMiddleHorizontalGuideline" />
 
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="216dp"
         android:src="@drawable/fuel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landHalfMiddleHorizontalGuideline" />
+
+    <ImageView
+        android:id="@+id/lowFuel"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/low_fuel"
+        app:layout_constraintStart_toStartOf="@+id/landMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
 
     <TextView
         android:id="@+id/fuelValue"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
         android:backgroundTint="#FFFFFF"
-        android:text="N/A %"
+        android:text="0 %"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/landMiddleHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline" />
 
     <ImageView
         android:id="@+id/currentShift"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/shift"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.676"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landTopHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/beam"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/beam"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landMiddlePlusHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentHandbrake"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/handbrake"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.676"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintStart_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentLimiter"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/limiter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.772"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintEnd_toStartOf="@+id/landRightVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentESP"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/esp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.322"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622" />
+        app:layout_constraintEnd_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentRight"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.772"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintStart_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landTopHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/currentLeft"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintEnd_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landTopHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/warning"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/warning"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landTopHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/oil"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/oil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.772"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintBottom_toTopOf="@+id/landMiddlePlusHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline" />
 
     <ImageView
         android:id="@+id/battery"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/battery"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintBottom_toTopOf="@+id/landMiddlePlusHorizontalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline" />
 
     <ImageView
         android:id="@+id/abs"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/abs"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622" />
+        app:layout_constraintStart_toStartOf="@+id/landLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.025" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landHalfMiddleHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landMiddleHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landMiddlePlusHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.975" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.025" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landHalfMiddleVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landMiddleVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landMiddlePlusVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/landRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.975" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -76,6 +76,15 @@
         app:layout_constraintBottom_toTopOf="@+id/middleHorizontalGuideline"
         app:layout_constraintEnd_toStartOf="@+id/middleVerticalGuideline" />
 
+    <ImageView
+        android:id="@+id/lowFuel"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/low_fuel"
+        app:layout_constraintBottom_toTopOf="@+id/middleHorizontalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/middleVerticalGuideline" />
+
     <TextView
         android:id="@+id/fuelValue"
         android:layout_width="70dp"

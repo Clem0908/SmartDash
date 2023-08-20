@@ -133,6 +133,13 @@ class MainActivity : Activity() {
                         val fuel = fromFloatBytesToFuel(data[28], data[29], data[30], data[31])
                         val fuelText = findViewById<TextView>(R.id.fuelValue)
                         fuelText.text = fuel.toString()+" %"
+                        if(fuel < 20) {
+                            val lowFuelImage = findViewById<ImageView>(R.id.lowFuel)
+                            lowFuelImage.setImageResource(R.drawable.low_fuel)
+                        } else {
+                            val lowFuelImage = findViewById<ImageView>(R.id.lowFuel)
+                            lowFuelImage.setImageResource(R.drawable.transparent)
+                        }
 
                         //Shift light
                         val shiftLight = getBit(data[44].toInt(),0)
