@@ -92,176 +92,181 @@ class MainActivity : Activity() {
         val speedValueText = findViewById<TextView>(R.id.speedValue)
         val fuelText = findViewById<TextView>(R.id.fuelValue)
 
-                GlobalScope.launch {
 
-                    while (true) {
+        findViewById<Button>(R.id.connect).setOnClickListener {
 
-                            try {
+            GlobalScope.launch {
 
-                                var ds = DatagramSocket(userPort)
-                                ds.broadcast = true
-                                val data = ByteArray(96)
-                                val dp = DatagramPacket(
-                                    data,
-                                    data.size,
-                                    Inet4Address.getByName(userIP),
-                                    userPort
-                                )
+                var ds = DatagramSocket(userPort)
 
-                                //LFS packet receiving
-                                ds.receive(dp)
+                while (true) {
 
-                                //Current gear display
-                                val currentGear = data[10]
-                                if (currentGear.toInt() == 0) {
-                                    runOnUiThread{ currentGearText.text = "R"}
-                                } else {
-                                    if (currentGear.toInt() == 1) {
-                                        runOnUiThread{ currentGearText.text = "N"}
-                                    } else {
-                                        runOnUiThread {
-                                            currentGearText.text =
-                                                (currentGear.toInt() - 1).toString()
-                                        }
-                                    }
+                    try {
+
+                        ds.broadcast = true
+                        val data = ByteArray(96)
+                        val dp = DatagramPacket(
+                            data,
+                            data.size,
+                            Inet4Address.getByName(userIP),
+                            userPort
+                        )
+
+                        //LFS packet receiving
+                        ds.receive(dp)
+
+                        //Current gear display
+                        val currentGear = data[10]
+                        if (currentGear.toInt() == 0) {
+                            runOnUiThread { currentGearText.text = "R" }
+                        } else {
+                            if (currentGear.toInt() == 1) {
+                                runOnUiThread { currentGearText.text = "N" }
+                            } else {
+                                runOnUiThread {
+                                    currentGearText.text =
+                                        (currentGear.toInt() - 1).toString()
                                 }
-
-                                //Current speed display
-                                val speed =
-                                    fromFloatBytesToInt(data[12], data[13], data[14], data[15])
-                                runOnUiThread{ speedValueText.text = speed.toString() + " km/h"}
-
-                                //Current RPMs display
-                                val rpm = fromFloatBytesToIntRpm(
-                                    data[16],
-                                    data[17],
-                                    data[18],
-                                    data[19]
-                                )
-                                //val rpmText = findViewById<TextView>(R.id.rpmValue)
-                                runOnUiThread{ rpmText.text = rpm.toString() + " /min"}
-
-                                //Current fuel percentage
-                                val fuel =
-                                    fromFloatBytesToFuel(data[28], data[29], data[30], data[31])
-                                runOnUiThread{ fuelText.text = fuel.toString() + " %"}
-                                if (fuel < 20) {
-                                    val lowFuelImage = findViewById<ImageView>(R.id.lowFuel)
-                                    runOnUiThread{lowFuelImage.setImageResource(R.drawable.low_fuel)}
-                                } else {
-                                    val lowFuelImage = findViewById<ImageView>(R.id.lowFuel)
-                                    runOnUiThread{lowFuelImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                //Shift light
-                                val shiftLight = getBit(data[44].toInt(), 0)
-                                val shiftLightImage = findViewById<ImageView>(R.id.currentShift)
-                                if (shiftLight == 1) {
-                                    runOnUiThread{shiftLightImage.setImageResource(R.drawable.shift)}
-                                } else {
-                                    runOnUiThread{shiftLightImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                //Beam light
-                                val beamLight = getBit(data[44].toInt(), 1)
-                                val beamLightImage = findViewById<ImageView>(R.id.beam)
-                                if (beamLight == 1) {
-                                    runOnUiThread{beamLightImage.setImageResource(R.drawable.beam)}
-                                } else {
-                                    runOnUiThread{beamLightImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                //Handbrake light
-                                val handbrakeLight = getBit(data[44].toInt(), 2)
-                                val handbrakeLightImage =
-                                    findViewById<ImageView>(R.id.currentHandbrake)
-                                if (handbrakeLight == 1) {
-                                    runOnUiThread{handbrakeLightImage.setImageResource(R.drawable.handbrake)}
-                                } else {
-                                    runOnUiThread{handbrakeLightImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                //Limiter light
-                                val limiterLight = getBit(data[44].toInt(), 3)
-                                val limiterLightImage =
-                                    findViewById<ImageView>(R.id.currentLimiter)
-                                if (limiterLight == 1) {
-                                    limiterLightImage.setImageResource(R.drawable.limiter)
-                                } else {
-                                    limiterLightImage.setImageResource(R.drawable.transparent)
-                                }
-
-                                //ESP light
-                                val ESPLight = getBit(data[44].toInt(), 4)
-                                val ESPLightImage = findViewById<ImageView>(R.id.currentESP)
-                                if (ESPLight == 1) {
-                                    ESPLightImage.setImageResource(R.drawable.esp)
-                                } else {
-                                    ESPLightImage.setImageResource(R.drawable.transparent)
-                                }
-
-                                //Indicators
-                                val rightLight = getBit(data[44].toInt(), 6)
-                                val leftLight = getBit(data[44].toInt(), 5)
-                                val rightLightImage = findViewById<ImageView>(R.id.currentRight)
-                                val leftLightImage = findViewById<ImageView>(R.id.currentLeft)
-                                val warningLigthImage = findViewById<ImageView>(R.id.warning)
-
-                                if (rightLight == 1) {
-                                    runOnUiThread{rightLightImage.setImageResource(R.drawable.right)}
-                                } else {
-                                    runOnUiThread{rightLightImage.setImageResource(R.drawable.transparent)}
-                                }
-                                if (leftLight == 1) {
-                                    runOnUiThread{leftLightImage.setImageResource(R.drawable.left)}
-                                } else {
-                                    runOnUiThread{leftLightImage.setImageResource(R.drawable.transparent)}
-                                }
-                                if (rightLight == 1 && leftLight == 1) {
-                                    runOnUiThread{rightLightImage.setImageResource(R.drawable.right)}
-                                    runOnUiThread{leftLightImage.setImageResource(R.drawable.left)}
-                                    runOnUiThread{warningLigthImage.setImageResource(R.drawable.warning)}
-                                }
-                                if (rightLight == 0 && leftLight == 0) {
-                                    runOnUiThread{rightLightImage.setImageResource(R.drawable.transparent)}
-                                    runOnUiThread{leftLightImage.setImageResource(R.drawable.transparent)}
-                                    runOnUiThread{warningLigthImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                //Oil light
-                                val oilLight = getBit(data[45].toInt(), 0)
-                                val oilLightImage = findViewById<ImageView>(R.id.oil)
-                                if (oilLight == 1) {
-                                    runOnUiThread{oilLightImage.setImageResource(R.drawable.oil)}
-                                } else {
-                                    runOnUiThread{oilLightImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                //Battery light
-                                val batteryLight = getBit(data[45].toInt(), 1)
-                                val batteryLightImage = findViewById<ImageView>(R.id.battery)
-                                if (batteryLight == 1) {
-                                    runOnUiThread{batteryLightImage.setImageResource(R.drawable.battery)}
-                                } else {
-                                    runOnUiThread{batteryLightImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                //ABS light
-                                val absLight = getBit(data[45].toInt(), 2)
-                                val absLightImage = findViewById<ImageView>(R.id.abs)
-                                if (absLight == 1) {
-                                    runOnUiThread{absLightImage.setImageResource(R.drawable.abs)}
-                                } else {
-                                    runOnUiThread{absLightImage.setImageResource(R.drawable.transparent)}
-                                }
-
-                                ds.close()
-                                TimeUnit.MILLISECONDS.sleep(50L)
-
-                            } catch (e: Exception) {
-                                e.printStackTrace()
                             }
+                        }
+
+                        //Current speed display
+                        val speed =
+                            fromFloatBytesToInt(data[12], data[13], data[14], data[15])
+                        runOnUiThread { speedValueText.text = speed.toString() + " km/h" }
+
+                        //Current RPMs display
+                        val rpm = fromFloatBytesToIntRpm(
+                            data[16],
+                            data[17],
+                            data[18],
+                            data[19]
+                        )
+                        //val rpmText = findViewById<TextView>(R.id.rpmValue)
+                        runOnUiThread { rpmText.text = rpm.toString() + " /min" }
+
+                        //Current fuel percentage
+                        val fuel =
+                            fromFloatBytesToFuel(data[28], data[29], data[30], data[31])
+                        runOnUiThread { fuelText.text = fuel.toString() + " %" }
+                        if (fuel < 20) {
+                            val lowFuelImage = findViewById<ImageView>(R.id.lowFuel)
+                            runOnUiThread { lowFuelImage.setImageResource(R.drawable.low_fuel) }
+                        } else {
+                            val lowFuelImage = findViewById<ImageView>(R.id.lowFuel)
+                            runOnUiThread { lowFuelImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Shift light
+                        val shiftLight = getBit(data[44].toInt(), 0)
+                        val shiftLightImage = findViewById<ImageView>(R.id.currentShift)
+                        if (shiftLight == 1) {
+                            runOnUiThread { shiftLightImage.setImageResource(R.drawable.shift) }
+                        } else {
+                            runOnUiThread { shiftLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Beam light
+                        val beamLight = getBit(data[44].toInt(), 1)
+                        val beamLightImage = findViewById<ImageView>(R.id.beam)
+                        if (beamLight == 1) {
+                            runOnUiThread { beamLightImage.setImageResource(R.drawable.beam) }
+                        } else {
+                            runOnUiThread { beamLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Handbrake light
+                        val handbrakeLight = getBit(data[44].toInt(), 2)
+                        val handbrakeLightImage =
+                            findViewById<ImageView>(R.id.currentHandbrake)
+                        if (handbrakeLight == 1) {
+                            runOnUiThread { handbrakeLightImage.setImageResource(R.drawable.handbrake) }
+                        } else {
+                            runOnUiThread { handbrakeLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Limiter light
+                        val limiterLight = getBit(data[44].toInt(), 3)
+                        val limiterLightImage =
+                            findViewById<ImageView>(R.id.currentLimiter)
+                        if (limiterLight == 1) {
+                            runOnUiThread { limiterLightImage.setImageResource(R.drawable.limiter) }
+                        } else {
+                            runOnUiThread { limiterLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //ESP light
+                        val ESPLight = getBit(data[44].toInt(), 4)
+                        val ESPLightImage = findViewById<ImageView>(R.id.currentESP)
+                        if (ESPLight == 1) {
+                            runOnUiThread { ESPLightImage.setImageResource(R.drawable.esp) }
+                        } else {
+                            runOnUiThread { ESPLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Indicators
+                        val rightLight = getBit(data[44].toInt(), 6)
+                        val leftLight = getBit(data[44].toInt(), 5)
+                        val rightLightImage = findViewById<ImageView>(R.id.currentRight)
+                        val leftLightImage = findViewById<ImageView>(R.id.currentLeft)
+                        val warningLightImage = findViewById<ImageView>(R.id.warning)
+
+                        if (rightLight == 1) {
+                            runOnUiThread { rightLightImage.setImageResource(R.drawable.right) }
+                        } else {
+                            runOnUiThread { rightLightImage.setImageResource(R.drawable.transparent) }
+                        }
+                        if (leftLight == 1) {
+                            runOnUiThread { leftLightImage.setImageResource(R.drawable.left) }
+                        } else {
+                            runOnUiThread { leftLightImage.setImageResource(R.drawable.transparent) }
+                        }
+                        if (rightLight == 1 && leftLight == 1) {
+                            runOnUiThread { rightLightImage.setImageResource(R.drawable.right) }
+                            runOnUiThread { leftLightImage.setImageResource(R.drawable.left) }
+                            runOnUiThread { warningLightImage.setImageResource(R.drawable.warning) }
+                        }
+                        if (rightLight == 0 && leftLight == 0) {
+                            runOnUiThread { rightLightImage.setImageResource(R.drawable.transparent) }
+                            runOnUiThread { leftLightImage.setImageResource(R.drawable.transparent) }
+                            runOnUiThread { warningLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Oil light
+                        val oilLight = getBit(data[45].toInt(), 0)
+                        val oilLightImage = findViewById<ImageView>(R.id.oil)
+                        if (oilLight == 1) {
+                            runOnUiThread { oilLightImage.setImageResource(R.drawable.oil) }
+                        } else {
+                            runOnUiThread { oilLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Battery light
+                        val batteryLight = getBit(data[45].toInt(), 1)
+                        val batteryLightImage = findViewById<ImageView>(R.id.battery)
+                        if (batteryLight == 1) {
+                            runOnUiThread { batteryLightImage.setImageResource(R.drawable.battery) }
+                        } else {
+                            runOnUiThread { batteryLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //ABS light
+                        val absLight = getBit(data[45].toInt(), 2)
+                        val absLightImage = findViewById<ImageView>(R.id.abs)
+                        if (absLight == 1) {
+                            runOnUiThread { absLightImage.setImageResource(R.drawable.abs) }
+                        } else {
+                            runOnUiThread { absLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //ds.close()
+                        //TimeUnit.MILLISECONDS.sleep(50L)
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
-                }
+                } //while
+            } //Scope coroutine
+        } //Connect onClickListener()
     }
 }

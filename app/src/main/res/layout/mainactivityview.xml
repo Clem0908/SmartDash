@@ -19,6 +19,18 @@
         app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline" />
 
     <Button
+        android:id="@+id/connect"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:backgroundTint="@color/black"
+        android:text="@string/connect"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline" />
+
+    <Button
         android:id="@+id/immersiveMode"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
