@@ -27,6 +27,11 @@ import kotlin.math.roundToInt
 
 class MainActivity : Activity() {
 
+    /* Function to convert the speed to integer 
+     *
+     * @param: b0, b1, b2, b3: 4 bytes
+     * @return: Int: speed in km/h
+     * */
     private fun fromFloatBytesToInt(b0: Byte, b1: Byte, b2: Byte, b3: Byte): Int {
 
         val speedBytes = byteArrayOf(b0, b1, b2, b3)
@@ -36,6 +41,11 @@ class MainActivity : Activity() {
         return (speed * 3.6).toInt()
     }
 
+    /* Function to convert the RPMs to integer 
+     *
+     * @param: b0, b1, b2, b3: 4 bytes
+     * @return: Int: RPMs
+     * */
     private fun fromFloatBytesToIntRpm(b0: Byte, b1: Byte, b2: Byte, b3: Byte): Int {
 
         val speedBytes = byteArrayOf(b0, b1, b2, b3)
@@ -45,6 +55,11 @@ class MainActivity : Activity() {
         return speed.toInt()
     }
 
+    /* Function to convert the fuel to a integer percentage 
+     *
+     * @param: b0, b1, b2, b3: 4 bytes
+     * @return: Int: percentage of fuel
+     * */
     private fun fromFloatBytesToFuel(b0: Byte, b1: Byte, b2: Byte, b3: Byte): Int {
 
         val speedBytes = byteArrayOf(b0, b1, b2, b3)
@@ -53,10 +68,19 @@ class MainActivity : Activity() {
         return (speedBytesBuffer.float * 100).roundToInt()
     }
 
+    /* Function to get a positional bit  
+     *
+     * @param: value, position
+     * @return: Int: position
+     * */
     private fun getBit(value: Int, position: Int): Int {
         return (value shr position) and 1;
     }
 
+    /* Function to display a Toast
+     *
+     * @param: String
+     * */
     private fun displayToast(param: String) {
         Toast.makeText(this, param, Toast.LENGTH_SHORT).show()
     }
@@ -70,6 +94,7 @@ class MainActivity : Activity() {
         super.onStart()
         super.onResume()
 
+	// Button to enable Immersive Mode
         findViewById<Button>(R.id.immersiveMode).setOnClickListener {
             val windowInsetsController =
                 WindowCompat.getInsetsController(window, window.decorView)
@@ -77,6 +102,7 @@ class MainActivity : Activity() {
             windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
         }
 
+	// Button to go to the Settings activity
         findViewById<Button>(R.id.settings).setOnClickListener {
 
             val intent = Intent(this, Settings::class.java)
@@ -92,7 +118,7 @@ class MainActivity : Activity() {
         val speedValueText = findViewById<TextView>(R.id.speedValue)
         val fuelText = findViewById<TextView>(R.id.fuelValue)
 
-
+	// Connection button that start the main routine
         findViewById<Button>(R.id.connect).setOnClickListener {
 
             GlobalScope.launch {
