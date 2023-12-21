@@ -16,6 +16,10 @@ First you need to run the Server **before** running LFS and then you can connect
 
 - Implement new 0.7E lights (fog, beam, full beam) 
 
+## Screenshots
+![Portrait mode](./screenshots/portrait.png)
+![Landscape mode](./screenshots/landscape.png)
+
 ### Credits
 Live for Speed is a game developped by Scawen Roberts, Eric Bailey and Victor van Vlaardingen.
 
