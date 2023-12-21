@@ -8,6 +8,14 @@ Make sure to set up correctly Live for Speed OutGauge Cf. (_cfg.txt_) in order t
 
 First you need to run the Server **before** running LFS and then you can connect your smartphone according that you enter the right IP and port settings in the app.
 
+## Roadmap / TODO
+
+- Automaticly set up `cfg.txt` in Live for Speed configuration within `Server.java`
+
+- Better handling of the app crashing when `Connection` is clicked multiple times
+
+- Implement new 0.7E lights (fog, beam, full beam) 
+
 ### Credits
 Live for Speed is a game developped by Scawen Roberts, Eric Bailey and Victor van Vlaardingen.
 
