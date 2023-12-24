@@ -8,4 +8,5 @@
     <string name="userporttext">Port où le Server envoie les paquets :</string>
     <string name="immersive">Mode immersif</string>
     <string name="connect">Se connecter</string>
+    <string name="rpm">r/min</string>
 </resources>

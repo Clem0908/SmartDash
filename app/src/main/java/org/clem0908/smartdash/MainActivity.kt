@@ -25,6 +25,9 @@ import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
+// Variable to know if a socket is running
+var alreadyConnected = 0
+
 class MainActivity : Activity() {
 
     /* Function to convert the speed to integer 
@@ -121,9 +124,14 @@ class MainActivity : Activity() {
 	// Connection button that start the main routine
         findViewById<Button>(R.id.connect).setOnClickListener {
 
+            // If a socket has been launched, do not create a new one
+            if(alreadyConnected == 1) { return@setOnClickListener }
+
             GlobalScope.launch {
 
                 var ds = DatagramSocket(userPort)
+
+                alreadyConnected = 1
 
                 while (true) {
 
@@ -159,7 +167,7 @@ class MainActivity : Activity() {
                         //Current speed display
                         val speed =
                             fromFloatBytesToInt(data[12], data[13], data[14], data[15])
-                        runOnUiThread { speedValueText.text = speed.toString() + " km/h" }
+                        runOnUiThread { speedValueText.text = speed.toString() }
 
                         //Current RPMs display
                         val rpm = fromFloatBytesToIntRpm(
@@ -169,13 +177,13 @@ class MainActivity : Activity() {
                             data[19]
                         )
                         //val rpmText = findViewById<TextView>(R.id.rpmValue)
-                        runOnUiThread { rpmText.text = rpm.toString() + " /min" }
+                        runOnUiThread { rpmText.text = rpm.toString() }
 
                         //Current fuel percentage
                         val fuel =
                             fromFloatBytesToFuel(data[28], data[29], data[30], data[31])
-                        runOnUiThread { fuelText.text = fuel.toString() + " %" }
-                        if (fuel < 20) {
+                        runOnUiThread { fuelText.text = fuel.toString() }
+                        if (fuel < 5) {
                             val lowFuelImage = findViewById<ImageView>(R.id.lowFuel)
                             runOnUiThread { lowFuelImage.setImageResource(R.drawable.low_fuel) }
                         } else {
@@ -285,8 +293,57 @@ class MainActivity : Activity() {
                             runOnUiThread { absLightImage.setImageResource(R.drawable.transparent) }
                         }
 
-                        //ds.close()
-                        //TimeUnit.MILLISECONDS.sleep(50L)
+                        //Engine damage light
+                        val engineDamageLight = getBit(data[45].toInt(), 3)
+                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
+                        if (engineDamageLight == 1) {
+                            runOnUiThread { displayToast("Engine damaged")}//absLightImage.setImageResource(R.drawable.abs) }
+                        } else {
+                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                        }
+                        //Engine damage light
+                        val rearFogLight = getBit(data[45].toInt(), 4)
+                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
+                        if (rearFogLight == 1) {
+                            runOnUiThread { displayToast("rearfoglight ")}//absLightImage.setImageResource(R.drawable.abs) }
+                        } else {
+                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                        }
+                        //Engine damage light
+                        val frontFogLight = getBit(data[45].toInt(), 5)
+                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
+                        if (frontFogLight == 1) {
+                            runOnUiThread { displayToast("frontfoglight ")}//absLightImage.setImageResource(R.drawable.abs) }
+                        } else {
+                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                        }
+                        //Engine damage light
+                        val dippedLight = getBit(data[45].toInt(), 6)
+                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
+                        if (dippedLight == 1) {
+                            runOnUiThread { displayToast("dippedlight ")}//absLightImage.setImageResource(R.drawable.abs) }
+                        } else {
+                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Low fuel light
+                        val lowFuelLight = getBit(data[45].toInt(), 7)
+                        val lowFuelLightImage = findViewById<ImageView>(R.id.lowFuel)
+                        if (lowFuelLight == 1) {
+                            runOnUiThread { lowFuelLightImage.setImageResource(R.drawable.low_fuel) }
+                        } else {
+                            runOnUiThread { lowFuelLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
+                        //Engine damage light
+                        val daylight = getBit(data[45].toInt(), 5)
+                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
+                        if (daylight == 1) {
+                            runOnUiThread { displayToast("veilleuses ")}//absLightImage.setImageResource(R.drawable.abs) }
+                        } else {
+                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                        }
+
 
                     } catch (e: Exception) {
                         e.printStackTrace()
