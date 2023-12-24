@@ -12,8 +12,6 @@ First you need to run the Server **before** running LFS and then you can connect
 
 - Automaticly set up `cfg.txt` in Live for Speed configuration within `Server.java`
 
-- Better handling of the app crashing when `Connection` is clicked multiple times
-
 - Implement new 0.7E lights (fog, beam, full beam) 
 
 ## Screenshots
