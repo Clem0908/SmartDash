@@ -56,29 +56,48 @@
 
     <TextView
         android:id="@+id/speedValue"
-        android:layout_width="300dp"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
-        android:text="0 km/h"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="60sp"
         app:layout_constraintStart_toStartOf="@+id/landLeftVerticalGuideline"
         app:layout_constraintTop_toTopOf="@+id/landHalfMiddleHorizontalGuideline" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="170dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/kmh"
+        app:layout_constraintStart_toEndOf="@+id/speedValue"
+        app:layout_constraintTop_toTopOf="@+id/landHalfMiddleHorizontalGuideline" />
+
     <TextView
         android:id="@+id/rpmValue"
-        android:layout_width="300dp"
+        android:layout_width="148dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
-        android:text="0 /min"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="50sp"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toStartOf="@+id/rpmText"
+        app:layout_constraintTop_toTopOf="@+id/landHalfMiddleHorizontalGuideline" />
+
+    <ImageView
+        android:id="@+id/rpmText"
+        android:layout_width="170dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/rpm"
         app:layout_constraintEnd_toStartOf="@+id/landRightVerticalGuideline"
         app:layout_constraintTop_toTopOf="@+id/landHalfMiddleHorizontalGuideline" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/fuel"
@@ -88,24 +107,25 @@
 
     <ImageView
         android:id="@+id/lowFuel"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/low_fuel"
-        app:layout_constraintStart_toStartOf="@+id/landMiddleVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/fuelValue" />
 
     <TextView
         android:id="@+id/fuelValue"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
-        android:text="0 %"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/landMiddleHorizontalGuideline"
         app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline" />
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/currentShift"
@@ -117,13 +137,57 @@
         app:layout_constraintTop_toTopOf="@+id/landTopHorizontalGuideline" />
 
     <ImageView
-        android:id="@+id/beam"
+        android:id="@+id/full_beam"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/beam"
+        android:src="@drawable/full_beam"
+        app:layout_constraintBottom_toTopOf="@+id/landBottomHorizontalGuideline"
         app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline" />
+
+    <ImageView
+        android:id="@+id/low_beam"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/low_beam"
+        app:layout_constraintBottom_toTopOf="@+id/full_beam"
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline" />
+
+    <ImageView
+        android:id="@+id/position_light"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/position_light"
+        app:layout_constraintBottom_toTopOf="@+id/low_beam"
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline" />
+
+    <ImageView
+        android:id="@+id/rear_fog_light"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/rear_fog_light"
+        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/landMiddleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
+
+    <ImageView
+        android:id="@+id/front_fog_light"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/front_fog_light"
+        app:layout_constraintEnd_toStartOf="@+id/landMiddleVerticalGuideline"
         app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/landMiddlePlusHorizontalGuideline" />
+        app:layout_constraintTop_toTopOf="@+id/landMiddleHorizontalGuideline" />
+
+    <ImageView
+        android:id="@+id/engine"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/engine"
+        app:layout_constraintStart_toStartOf="@+id/landLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/abs" />
 
     <ImageView
         android:id="@+id/currentHandbrake"

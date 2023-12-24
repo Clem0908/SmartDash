@@ -12,8 +12,6 @@ First you need to run the Server **before** running LFS and then you can connect
 
 - Automaticly set up `cfg.txt` in Live for Speed configuration within `Server.java`
 
-- Implement new 0.7E lights (fog, beam, full beam) 
-
 ## Screenshots
 ![Portrait mode](./screenshots/portrait.png)
 ![Landscape mode](./screenshots/landscape.png)
@@ -24,7 +22,3 @@ Live for Speed is a game developped by Scawen Roberts, Eric Bailey and Victor va
 For more information about the game, please visit the [Live for Speed website](https://www.lfs.net/)
 
 Pit Limiter icon by Nominal Two-Two [source](https://commons.wikimedia.org/wiki/File:Cruise_Control.svg) under the [license](https://creativecommons.org/licenses/by-sa/4.0/deed.en)
-
-Indicator turn signal icons by Ehsnils [source](https://commons.wikimedia.org/wiki/File:A16R_Right_turn_signal.svg) under the [license](https://creativecommons.org/licenses/by-sa/3.0/deed.en)
-
-Full beam indicator icon by Ehsnils [source](https://commons.wikimedia.org/wiki/File:A01_High_Beam_Indicator.svg) under the [license](https://creativecommons.org/licenses/by-sa/3.0/deed.en)

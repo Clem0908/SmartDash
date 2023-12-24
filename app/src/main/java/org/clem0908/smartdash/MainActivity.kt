@@ -200,11 +200,11 @@ class MainActivity : Activity() {
                             runOnUiThread { shiftLightImage.setImageResource(R.drawable.transparent) }
                         }
 
-                        //Beam light
+                        //Full beam light
                         val beamLight = getBit(data[44].toInt(), 1)
-                        val beamLightImage = findViewById<ImageView>(R.id.beam)
+                        val beamLightImage = findViewById<ImageView>(R.id.full_beam)
                         if (beamLight == 1) {
-                            runOnUiThread { beamLightImage.setImageResource(R.drawable.beam) }
+                            runOnUiThread { beamLightImage.setImageResource(R.drawable.full_beam) }
                         } else {
                             runOnUiThread { beamLightImage.setImageResource(R.drawable.transparent) }
                         }
@@ -293,37 +293,40 @@ class MainActivity : Activity() {
                             runOnUiThread { absLightImage.setImageResource(R.drawable.transparent) }
                         }
 
-                        //Engine damage light
-                        val engineDamageLight = getBit(data[45].toInt(), 3)
-                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
-                        if (engineDamageLight == 1) {
-                            runOnUiThread { displayToast("Engine damaged")}//absLightImage.setImageResource(R.drawable.abs) }
+                        //Engine light
+                        val engineLight = getBit(data[45].toInt(), 3)
+                        val engineLightImage = findViewById<ImageView>(R.id.engine)
+                        if (engineLight == 1) {
+                            runOnUiThread { engineLightImage.setImageResource(R.drawable.engine) }
                         } else {
-                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                            runOnUiThread { engineLightImage.setImageResource(R.drawable.transparent) }
                         }
-                        //Engine damage light
+
+                        //Rear fog light
                         val rearFogLight = getBit(data[45].toInt(), 4)
-                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
+                        val rearFogLightImage = findViewById<ImageView>(R.id.rear_fog_light)
                         if (rearFogLight == 1) {
-                            runOnUiThread { displayToast("rearfoglight ")}//absLightImage.setImageResource(R.drawable.abs) }
+                            runOnUiThread { rearFogLightImage.setImageResource(R.drawable.rear_fog_light) }
                         } else {
-                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                            runOnUiThread { rearFogLightImage.setImageResource(R.drawable.transparent) }
                         }
-                        //Engine damage light
+
+                        //Front fog light
                         val frontFogLight = getBit(data[45].toInt(), 5)
-                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
+                        val frontFogLightImage = findViewById<ImageView>(R.id.front_fog_light)
                         if (frontFogLight == 1) {
-                            runOnUiThread { displayToast("frontfoglight ")}//absLightImage.setImageResource(R.drawable.abs) }
+                            runOnUiThread { frontFogLightImage.setImageResource(R.drawable.front_fog_light) }
                         } else {
-                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                            runOnUiThread { frontFogLightImage.setImageResource(R.drawable.transparent) }
                         }
-                        //Engine damage light
-                        val dippedLight = getBit(data[45].toInt(), 6)
-                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
-                        if (dippedLight == 1) {
-                            runOnUiThread { displayToast("dippedlight ")}//absLightImage.setImageResource(R.drawable.abs) }
+
+                        //Low beam light
+                        val lowBeamLight = getBit(data[45].toInt(), 6)
+                        val lowBeamLightImage = findViewById<ImageView>(R.id.low_beam)
+                        if (lowBeamLight == 1) {
+                            runOnUiThread { lowBeamLightImage.setImageResource(R.drawable.low_beam) }
                         } else {
-                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                            runOnUiThread { lowBeamLightImage.setImageResource(R.drawable.transparent) }
                         }
 
                         //Low fuel light
@@ -335,13 +338,13 @@ class MainActivity : Activity() {
                             runOnUiThread { lowFuelLightImage.setImageResource(R.drawable.transparent) }
                         }
 
-                        //Engine damage light
-                        val daylight = getBit(data[45].toInt(), 5)
-                        //val engineDamageLightImage = findViewById<ImageView>(R.id.abs)
-                        if (daylight == 1) {
-                            runOnUiThread { displayToast("veilleuses ")}//absLightImage.setImageResource(R.drawable.abs) }
+                        //Position light
+                        val positionLight = getBit(data[46].toInt(), 0)
+                        val positionLightImage = findViewById<ImageView>(R.id.position_light)
+                        if (positionLight == 1) {
+                            runOnUiThread { positionLightImage.setImageResource(R.drawable.position_light) }
                         } else {
-                            runOnUiThread { }//absLightImage.setImageResource(R.drawable.transparent) }
+                            runOnUiThread { positionLightImage.setImageResource(R.drawable.transparent) }
                         }
 
 
