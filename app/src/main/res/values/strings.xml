@@ -8,4 +8,6 @@
     <string name="immersive">Immersive mode</string>
     <string name="connect">Connect</string>
     <string name="rpm">RPM</string>
+    <string name="speed">km/h</string>
+    <string name="percentage">%</string>
 </resources>

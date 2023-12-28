@@ -9,137 +9,157 @@
 
     <Button
         android:id="@+id/settings"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:backgroundTint="@color/black"
         android:text="@string/settings"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline" />
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline" />
 
     <Button
         android:id="@+id/connect"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:backgroundTint="@color/black"
         android:text="@string/connect"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline" />
+        app:layout_constraintEnd_toStartOf="@+id/settings"
+        app:layout_constraintStart_toEndOf="@+id/immersiveMode" />
 
     <Button
         android:id="@+id/immersiveMode"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:backgroundTint="@color/black"
         android:text="@string/immersive"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline" />
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline" />
 
     <TextView
         android:id="@+id/currentGear"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="N"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline"
+        android:textSize="64sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/currentLeft" />
 
     <TextView
         android:id="@+id/speedValue"
-        android:layout_width="192dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
+        android:gravity="center"
         android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="60sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/halfMiddleTopHorizontalGuideline" />
+        android:textSize="64sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/halfMiddleTopHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/middleVerticalGuideline" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="170dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/kmh"
-        app:layout_constraintStart_toEndOf="@+id/speedValue"
-        app:layout_constraintTop_toTopOf="@+id/halfMiddleTopHorizontalGuideline" />
+    <TextView
+        android:id="@+id/speedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/speed"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toTopOf="@+id/halfMiddleTopHorizontalGuideline"
+        app:layout_constraintStart_toEndOf="@+id/speedValue" />
 
     <TextView
         android:id="@+id/rpmValue"
-        android:layout_width="192dp"
-        android:layout_height="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
+        android:gravity="center"
         android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="60sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/speedValue" />
+        android:textSize="64sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/middleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/halfMiddleTopHorizontalGuideline" />
 
-    <ImageView
+    <TextView
         android:id="@+id/rpmText"
-        android:layout_width="170dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/rpm"
-        app:layout_constraintStart_toEndOf="@+id/rpmValue"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="center"
+        android:text="@string/rpm"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="64sp"
+        app:layout_constraintStart_toStartOf="@+id/middleVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/halfMiddleTopHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:src="@drawable/fuel"
-        app:layout_constraintBottom_toTopOf="@+id/halfMiddleTopHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/middleVerticalGuideline" />
+        app:layout_constraintStart_toEndOf="@+id/currentGear"
+        app:layout_constraintTop_toBottomOf="@+id/lowFuel" />
 
     <ImageView
         android:id="@+id/engine"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/engine"
-        app:layout_constraintBottom_toTopOf="@+id/halfMiddleDownHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline" />
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/abs" />
 
     <ImageView
         android:id="@+id/lowFuel"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:src="@drawable/low_fuel"
-        app:layout_constraintBottom_toTopOf="@+id/fuelValue"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/middleVerticalGuideline" />
+        app:layout_constraintStart_toEndOf="@+id/currentLeft"
+        app:layout_constraintTop_toTopOf="@+id/topHorizontalGuideline" />
 
     <TextView
         android:id="@+id/fuelValue"
-        android:layout_width="100dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
         android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/halfMiddleTopHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/middleVerticalGuideline" />
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/warning" />
+
+    <TextView
+        android:id="@+id/fuelPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/percentage"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="48sp"
+        app:layout_constraintStart_toEndOf="@+id/fuelValue"
+        app:layout_constraintTop_toBottomOf="@+id/warning" />
 
     <ImageView
         android:id="@+id/currentShift"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/shift"
-        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/currentRight" />
 
     <ImageView
@@ -147,76 +167,74 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/full_beam"
-        app:layout_constraintBottom_toTopOf="@+id/halfMiddleDownHorizontalGuideline"
-        app:layout_constraintEnd_toEndOf="@+id/oil"
-        app:layout_constraintStart_toStartOf="@+id/battery" />
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/low_beam" />
 
     <ImageView
         android:id="@+id/low_beam"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/low_beam"
-        app:layout_constraintBottom_toTopOf="@+id/full_beam"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/position_light" />
 
     <ImageView
         android:id="@+id/rear_fog_light"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:src="@drawable/rear_fog_light"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
+        app:layout_constraintStart_toEndOf="@+id/abs"
+        app:layout_constraintTop_toBottomOf="@+id/front_fog_light" />
 
     <ImageView
         android:id="@+id/front_fog_light"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:src="@drawable/front_fog_light"
-        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
+        app:layout_constraintStart_toEndOf="@+id/currentESP"
+        app:layout_constraintTop_toBottomOf="@+id/rpmValue" />
 
     <ImageView
         android:id="@+id/position_light"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/position_light"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/rpmText" />
 
     <ImageView
         android:id="@+id/currentHandbrake"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/handbrake"
-        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/rpmText" />
 
     <ImageView
         android:id="@+id/currentLimiter"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="64dp"
         android:src="@drawable/limiter"
-        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/currentHandbrake" />
+        app:layout_constraintEnd_toStartOf="@+id/currentHandbrake"
+        app:layout_constraintTop_toBottomOf="@+id/rpmText" />
 
     <ImageView
         android:id="@+id/currentESP"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/esp"
-        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/rpmValue" />
 
     <ImageView
         android:id="@+id/currentRight"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/right"
-        app:layout_constraintStart_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline"
         app:layout_constraintTop_toTopOf="@+id/topHorizontalGuideline" />
 
     <ImageView
@@ -224,18 +242,16 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/left"
-        app:layout_constraintEnd_toStartOf="@+id/leftVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
         app:layout_constraintTop_toTopOf="@+id/topHorizontalGuideline" />
 
     <ImageView
         android:id="@+id/warning"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="0dp"
         android:src="@drawable/warning"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/currentRight"
+        app:layout_constraintStart_toEndOf="@+id/currentLeft"
         app:layout_constraintTop_toTopOf="@+id/topHorizontalGuideline" />
 
     <ImageView
@@ -243,25 +259,24 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/oil"
-        app:layout_constraintBottom_toTopOf="@+id/halfMiddleDownHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline" />
+        app:layout_constraintEnd_toStartOf="@+id/extremeRightVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/currentHandbrake" />
 
     <ImageView
         android:id="@+id/battery"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/battery"
-        app:layout_constraintBottom_toTopOf="@+id/halfMiddleDownHorizontalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline" />
+        app:layout_constraintEnd_toStartOf="@+id/oil"
+        app:layout_constraintTop_toBottomOf="@+id/currentLimiter" />
 
     <ImageView
         android:id="@+id/abs"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="64dp"
         android:src="@drawable/abs"
-        app:layout_constraintEnd_toEndOf="@+id/currentESP"
-        app:layout_constraintTop_toTopOf="@+id/middleHorizontalGuideline" />
+        app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/currentESP" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/topHorizontalGuideline"
@@ -299,6 +314,13 @@
         app:layout_constraintGuide_percent="0.975" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/extremeLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.025" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/leftVerticalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -318,5 +340,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/extremeRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.975" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
