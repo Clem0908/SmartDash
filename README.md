@@ -4,7 +4,7 @@ SmartDash is an application that enables an user to display OutGauge Live for Sp
 It comes with a Server running in Java and an application for the smartphone.
 
 ## Requirements
-- Java (JVM) 11 
+- Java (JVM) 11
 - An Android device running Android 7.0 Nougat
 
 ## Running SmartDash
@@ -17,9 +17,9 @@ It comes with a Server running in Java and an application for the smartphone.
 OutGauge IP 127.0.0.1
 OutGauge Port 30001`
 
-- Running the Server on Windows: 'Win+R - cmd.exe - Enter - Navigate to where you downloaded SmartDash - java Server'
+- Running the Server on Windows: 'Win+R -> cmd.exe -> Enter -> Navigate to where you downloaded SmartDash -> java -jar Server.jar'
 
-- Running the Server on GNU/Linux: well, you know how to do it :) `java Server`
+- Running the Server on GNU/Linux: well, you should know how to do it :) `java Server`
 
 - Select the Live for Speed port (in this example: 30001 because we put 'OutGauge Port 30001' before)
 
@@ -38,10 +38,6 @@ OutGauge Port 30001`
 - Go back and click 'Connect'
 
 - Go for a drive and enjoy ! :)
-
-## Roadmap / TODO
-
-- Automaticly set up `cfg.txt` in Live for Speed configuration within `Server.java`
 
 ## Screenshots
 ![Portrait mode](./screenshots/portrait.png)
