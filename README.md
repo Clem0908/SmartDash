@@ -19,7 +19,7 @@ OutGauge Port 30001`
 
 - Running the Server on Windows: 'Win+R -> cmd.exe -> Enter -> Navigate to where you downloaded SmartDash -> java -jar 'Server.jar'
 
-- Running the Server on GNU/Linux: well, you should know how to do it :) `java Server`
+- Running the Server on GNU/Linux: well, you should know how to do it :) `java -jar Server.jar`
 
 - Select the Live for Speed port (in this example: 30001 because we put 'OutGauge Port 30001' before)
 
