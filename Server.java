@@ -19,43 +19,102 @@ import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import java.io.File;
+import java.io.FileWriter;
+
 public class Server {
 
-	private static int fromFloatBytesToInt(byte b0, byte b1, byte b2, byte b3) {
-		
-		int asInt = (b0 & 0xFF)
-		    | ((b1 & 0xFF) << 8)
-		    | ((b2 & 0xFF) << 16)
-		    | ((b3 & 0xFF) << 24);
-		float asFloat = (int) Float.intBitsToFloat(asInt);
-		double conv = asFloat * 3.6;
-		int speed = (int) conv;
+	private int lfs_port;
+	private int server_port;
+	private String smartphone_ip;
 
-		return speed;
+	public Server(int lfs_port, int server_port, String smartphone_ip) {
+		
+		this.lfs_port = lfs_port;
+		this.server_port = server_port;
+		this.smartphone_ip = smartphone_ip;
+	}
+	
+	public int getLfsPort() {
+		return this.lfs_port;
+	}
+
+	public int getServerPort() {
+		return this.server_port;
+	}
+
+	public String getSmartphoneIp() {
+		return this.smartphone_ip;
+	}
+
+	private static Server confFile() throws IOException {
+		
+		File confFile = new File("./Server.conf");
+		
+		if(confFile.exists()) {
+
+			System.out.println("Server.conf found - using these settings: ");
+
+			Scanner scanner = new Scanner(confFile);
+			int lfs_port = scanner.nextInt();
+			System.out.print("Live for Speed OutGauge port: "+lfs_port+" | ");
+			
+			int server_port = scanner.nextInt();
+			System.out.print("Port to send: "+server_port+" | ");
+			
+			String smartphone_ip = new String();
+			smartphone_ip = scanner.next();
+			System.out.println("IP to send: "+smartphone_ip);
+			
+			Server s = new Server(lfs_port,server_port,smartphone_ip);
+			
+			return s;
+
+		} else {
+			
+			System.out.println("Server.conf not found - asking settings and creating one...");
+
+			System.out.print("Live for Speed OutGauge port ? (e.g. 30001): ");
+			Scanner scanner = new Scanner(System.in);
+			int lfs_port = scanner.nextInt();
+			
+			System.out.print("Android device port to send ? (e.g. 30002): ");
+			int server_port = scanner.nextInt();
+			
+			System.out.print("Android device IP address ? (e.g. 192.168.0.255): ");
+			String smartphone_ip = new String();
+			smartphone_ip = scanner.next();
+
+			confFile.createNewFile();	
+			FileWriter confFileWriter = new FileWriter(confFile);
+			
+			String confString = new String(String.valueOf(lfs_port)+"\n"+String.valueOf(server_port)+"\n"+smartphone_ip);
+			confFileWriter.write(confString);
+			confFileWriter.close();
+
+			Server s = new Server(lfs_port,server_port,smartphone_ip);
+			
+			return s;
+		}
+
 	}
 
 	public static void main(String args[]) throws Exception, IOException 
 	{
+		Server s = confFile();
+		System.out.println("\nRunning...");	
 
-		System.out.print("Live for Speed OutGauge port : ");
-		Scanner scanner = new Scanner(System.in);
-		int lfs_port = scanner.nextInt();
-		System.out.print("Smartphone listening port : ");
-		int server_port = scanner.nextInt();
-		System.out.print("Smartphone IP address : ");
-		String smartphone_ip = new String();
-		smartphone_ip = scanner.next();
+		int lfs_port = s.getLfsPort();
+		int server_port = s.getServerPort();
+		String smartphone_ip = s.getSmartphoneIp();
 
 		DatagramSocket lfs_ds = new DatagramSocket(lfs_port);
 		byte data[] = new byte[96];
 		DatagramPacket lfs_dp = new DatagramPacket(data,data.length);
-		byte lfs_data[] = new byte[96];
 
 		lfs_ds.receive(lfs_dp);
 		lfs_ds.close();
-		lfs_data = lfs_dp.getData();
 
-		int speed = fromFloatBytesToInt(lfs_data[12],lfs_data[13],lfs_data[14],lfs_data[15]);
 
 		DatagramSocket server_ds = new DatagramSocket(server_port);
 		server_ds.setBroadcast(true);
@@ -85,9 +144,6 @@ public class Server {
 			server_dp = new DatagramPacket(data1,data1.length,Inet4Address.getByName(smartphone_ip),server_port);
 			server_ds.send(server_dp);
 			server_ds.close();
-			lfs_data = lfs_dp.getData();
-
-			speed = fromFloatBytesToInt(lfs_data[12],lfs_data[13],lfs_data[14],lfs_data[15]);
 		}
 	}	
 	

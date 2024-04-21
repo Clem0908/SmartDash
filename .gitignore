@@ -1,4 +1,5 @@
 Server.class
+Server.conf
 key.jks
 .gradle/
 .idea/

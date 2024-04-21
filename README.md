@@ -21,7 +21,9 @@ OutGauge Port 30001`
 
 - Running the Server on GNU/Linux: well, you know how to do it :) `java Server`
 
-- Select a port (e.g. 30002)
+- Select the Live for Speed port (in this example: 30001 because we put 'OutGauge Port 30001' before)
+
+- Select a port where data will be sent (e.g. 30002)
 
 - Select an IP address to send data (e.g. 192.168.0.255)
 
