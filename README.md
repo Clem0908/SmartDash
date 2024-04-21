@@ -17,7 +17,7 @@ It comes with a Server running in Java and an application for the smartphone.
 OutGauge IP 127.0.0.1
 OutGauge Port 30001`
 
-- Running the Server on Windows: 'Win+R -> cmd.exe -> Enter -> Navigate to where you downloaded SmartDash -> java -jar Server.jar'
+- Running the Server on Windows: 'Win+R -> cmd.exe -> Enter -> Navigate to where you downloaded SmartDash -> java -jar 'Server.jar'
 
 - Running the Server on GNU/Linux: well, you should know how to do it :) `java Server`
 
