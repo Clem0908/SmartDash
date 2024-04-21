@@ -3,10 +3,39 @@ SmartDash is an application that enables an user to display OutGauge Live for Sp
 
 It comes with a Server running in Java and an application for the smartphone.
 
-## Running SmartDash
-Make sure to set up correctly Live for Speed OutGauge Cf. (_cfg.txt_) in order to send the UDP packets.
+## Requirements
+- Java (JVM) 11 
+- An Android device running Android 7.0 Nougat
 
-First you need to run the Server **before** running LFS and then you can connect your smartphone according that you enter the right IP and port settings in the app.
+## Running SmartDash
+
+### On your computer:
+
+- Modify OutGauge values in your _cfg.txt_ from your Live for Speed folder as following:
+
+`OutGauge Mode 1
+OutGauge IP 127.0.0.1
+OutGauge Port 30001`
+
+- Running the Server on Windows: 'Win+R - cmd.exe - Enter - Navigate to where you downloaded SmartDash - java Server'
+
+- Running the Server on GNU/Linux: well, you know how to do it :) `java Server`
+
+- Select a port (e.g. 30002)
+
+- Select an IP address to send data (e.g. 192.168.0.255)
+
+- Run Live for Speed
+
+### On your Android device:
+
+- Install the apk
+
+- In 'Settings': select the same port and the same IP - 'Save'
+
+- Go back and click 'Connect'
+
+- Go for a drive and enjoy ! :)
 
 ## Roadmap / TODO
 
