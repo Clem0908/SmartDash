@@ -29,15 +29,21 @@ class Settings : Activity() {
             val sharedPreferences = getSharedPreferences("userSettings", Context.MODE_PRIVATE)
             val userAddr = findViewById<EditText>(R.id.userIPSetting)
             val userPort = findViewById<EditText>(R.id.userPortSetting)
-            val sharedPreferencesEditor = sharedPreferences.edit()
-            sharedPreferencesEditor.putString("userIP",userAddr.text.toString())
-            sharedPreferencesEditor.putInt("userPort",userPort.text.toString().toInt())
-            sharedPreferencesEditor.apply()
 
-            displayToast(getString(R.string.saved))
+            if(userAddr.text.toString() != "" && userPort.text.toString() != "") {
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+                val sharedPreferencesEditor = sharedPreferences.edit()
+                sharedPreferencesEditor.putString("userIP", userAddr.text.toString())
+                sharedPreferencesEditor.putInt("userPort", userPort.text.toString().toInt())
+                sharedPreferencesEditor.apply()
+
+                displayToast(getString(R.string.saved))
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                displayToast(getString(R.string.errorsettings))
+            }
         }
     }
 }

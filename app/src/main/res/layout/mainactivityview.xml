@@ -278,6 +278,15 @@
         app:layout_constraintStart_toStartOf="@+id/extremeLeftVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/currentESP" />
 
+    <ImageView
+        android:id="@+id/connected"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/connected"
+        app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/rightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/leftVerticalGuideline" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/topHorizontalGuideline"
         android:layout_width="wrap_content"

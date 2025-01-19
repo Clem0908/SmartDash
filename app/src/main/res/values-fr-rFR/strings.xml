@@ -11,4 +11,8 @@
     <string name="rpm">r/min</string>
     <string name="speed">km/h</string>
     <string name="percentage">%</string>
+    <string name="alreadyconnected">Déjà connecté</string>
+    <string name="connecting">Connexion…</string>
+    <string name="connected">Connecté</string>
+    <string name="errorsettings">Veuillez remplir les champs</string>
 </resources>

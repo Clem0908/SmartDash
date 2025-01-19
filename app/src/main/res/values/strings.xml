@@ -10,4 +10,8 @@
     <string name="rpm">RPM</string>
     <string name="speed">km/h</string>
     <string name="percentage">%</string>
+    <string name="alreadyconnected">Already connected</string>
+    <string name="connecting">Connecting…</string>
+    <string name="connected">Connected</string>
+    <string name="errorsettings">Please fill the fields</string>
 </resources>

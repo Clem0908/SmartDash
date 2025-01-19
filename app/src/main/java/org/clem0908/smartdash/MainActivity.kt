@@ -3,8 +3,8 @@ package org.clem0908.smartdash
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -12,17 +12,17 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.Inet4Address
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.concurrent.TimeUnit
-import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
 // Variable to know if a socket is running
@@ -91,6 +91,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         actionBar?.hide();
         setContentView(R.layout.mainactivityview)
@@ -121,19 +122,31 @@ class MainActivity : Activity() {
         val speedValueText = findViewById<TextView>(R.id.speedValue)
         val fuelText = findViewById<TextView>(R.id.fuelValue)
 
+        val connectedImage = findViewById<ImageView>(R.id.connected)
+        connectedImage.visibility = View.INVISIBLE
+
 	// Connection button that start the main routine
         findViewById<Button>(R.id.connect).setOnClickListener {
 
             // If a socket has been launched, do not create a new one
-            if(alreadyConnected == 1) { return@setOnClickListener }
+            if(alreadyConnected == 1) {
+                displayToast(getString(R.string.alreadyconnected))
+                it.visibility = View.GONE
+                connectedImage.visibility = View.VISIBLE
+                return@setOnClickListener
+            }
 
+            displayToast(getString(R.string.connecting))
             GlobalScope.launch {
 
-                var ds = DatagramSocket(userPort)
+                val ds = DatagramSocket(userPort)
+                if(ds.isBound) {
+                    alreadyConnected = 1
+                } else {
+                    ds.close()
+                }
 
-                alreadyConnected = 1
-
-                while (true) {
+                while (ds.isBound) {
 
                     try {
 
@@ -346,8 +359,6 @@ class MainActivity : Activity() {
                         } else {
                             runOnUiThread { positionLightImage.setImageResource(R.drawable.transparent) }
                         }
-
-
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
