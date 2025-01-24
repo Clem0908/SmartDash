@@ -57,14 +57,14 @@ public class Server {
 
 			Scanner scanner = new Scanner(confFile);
 			int lfs_port = scanner.nextInt();
-			System.out.print("Live for Speed OutGauge port: "+lfs_port+" | ");
+			System.out.print("Live for Speed 'cfg.txt' OutGauge port: "+lfs_port+" | ");
 			
 			int server_port = scanner.nextInt();
-			System.out.print("Port to send: "+server_port+" | ");
+			System.out.print("Port to set on the Android device: "+server_port+" | ");
 			
 			String smartphone_ip = new String();
 			smartphone_ip = scanner.next();
-			System.out.println("IP to send: "+smartphone_ip);
+			System.out.println("IP to set on the Android device: "+smartphone_ip);
 			
 			Server s = new Server(lfs_port,server_port,smartphone_ip);
 			
