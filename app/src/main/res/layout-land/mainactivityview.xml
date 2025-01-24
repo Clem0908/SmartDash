@@ -289,15 +289,6 @@
         app:layout_constraintStart_toStartOf="@+id/landLeftVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/lowFuel" />
 
-    <ImageView
-        android:id="@+id/connected"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/connected"
-        app:layout_constraintBottom_toTopOf="@+id/landBottomHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/landMiddlePlusVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/landHalfMiddleVerticalGuideline" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/landTopHorizontalGuideline"
         android:layout_width="wrap_content"
