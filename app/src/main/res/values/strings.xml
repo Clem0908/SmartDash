@@ -7,11 +7,12 @@
     <string name="userporttext">Port where the Server is sending packets :</string>
     <string name="immersive">Immersive mode</string>
     <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
     <string name="rpm">RPM</string>
     <string name="speed">km/h</string>
     <string name="percentage">%</string>
-    <string name="alreadyconnected">Already connected</string>
     <string name="connecting">Connecting…</string>
+    <string name="disconnecting">Disconnecting…</string>
     <string name="connected">Connected</string>
     <string name="errorsettings">Please fill the fields</string>
 </resources>

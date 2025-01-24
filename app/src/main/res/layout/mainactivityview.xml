@@ -31,6 +31,19 @@
         app:layout_constraintStart_toEndOf="@+id/immersiveMode" />
 
     <Button
+        android:id="@+id/disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:backgroundTint="@color/black"
+        android:text="@string/disconnect"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/downHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/settings"
+        app:layout_constraintStart_toEndOf="@+id/immersiveMode" />
+
+    <Button
         android:id="@+id/immersiveMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

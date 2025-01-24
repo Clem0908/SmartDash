@@ -8,11 +8,12 @@
     <string name="userporttext">Port où le Server envoie les paquets :</string>
     <string name="immersive">Mode immersif</string>
     <string name="connect">Se connecter</string>
+    <string name="disconnect">Se déconnecter</string>
     <string name="rpm">r/min</string>
     <string name="speed">km/h</string>
     <string name="percentage">%</string>
-    <string name="alreadyconnected">Déjà connecté</string>
     <string name="connecting">Connexion…</string>
+    <string name="disconnecting">Déconnexion…</string>
     <string name="connected">Connecté</string>
     <string name="errorsettings">Veuillez remplir les champs</string>
 </resources>

@@ -17,7 +17,8 @@
         <activity
             android:name=".MainActivity"
             android:permission="android.permission.INTERNET"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
