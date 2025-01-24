@@ -3,8 +3,8 @@
     <string name="settings">Settings</string>
     <string name="save">Save</string>
     <string name="saved">Saved</string>
-    <string name="useriptext">IP address of the computer running Live for Speed :</string>
-    <string name="userporttext">Port where the Server is sending packets :</string>
+    <string name="useriptext">IP address given by the Server of the computer running Live for Speed:</string>
+    <string name="userporttext">Port given by the Server of the computer running Live for Speed :</string>
     <string name="immersive">Immersive mode</string>
     <string name="connect">Connect</string>
     <string name="disconnect">Disconnect</string>
@@ -14,5 +14,5 @@
     <string name="connecting">Connecting…</string>
     <string name="disconnecting">Disconnecting…</string>
     <string name="connected">Connected</string>
-    <string name="errorsettings">Please fill the fields</string>
+    <string name="errorsettings">Please fill the two fields</string>
 </resources>
